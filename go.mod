@@ -1,4 +1,4 @@
-module github.com/edkirin/gorm-filter-repo
+module github.com/edkirin/gormfilterrepo
 
 go 1.22.4
 

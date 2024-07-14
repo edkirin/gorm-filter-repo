@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/edkirin/gorm-filter-repo/smartfilter"
+	"github.com/edkirin/gormfilterrepo/smartfilter"
 
 	"gorm.io/gorm/schema"
 )

@@ -3,7 +3,7 @@ package repository
 import (
 	"errors"
 
-	"github.com/edkirin/gorm-filter-repo/smartfilter"
+	"github.com/edkirin/gormfilterrepo/smartfilter"
 
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
