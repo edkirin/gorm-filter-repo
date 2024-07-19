@@ -29,7 +29,8 @@ func (m ExistsMethod[T]) Exists(filter interface{}) (bool, error) {
 		return false, err
 	}
 
-	result := query.Select(m.repo.IdField).Take(&model)
+	fullIdField := model.TableName() + "." + m.repo.IdField
+	result := query.Select(fullIdField).Take(&model)
 
 	exists := !errors.Is(result.Error, gorm.ErrRecordNotFound) && result.Error == nil
 	return exists, nil

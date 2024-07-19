@@ -22,7 +22,7 @@ func TestExistsMethod(t *testing.T) {
 			Id: &id,
 		}
 
-		sql := "SELECT id FROM my_models WHERE my_models.id = $1 LIMIT $2"
+		sql := "SELECT my_models.id FROM my_models WHERE my_models.id = $1 LIMIT $2"
 		mock.ExpectQuery(fmt.Sprintf("^%s$", regexp.QuoteMeta(sql))).WithArgs(id, 1)
 
 		result, err := repo.Exists(filter)
@@ -46,7 +46,7 @@ func TestExistsMethod(t *testing.T) {
 			Id: &id,
 		}
 
-		sql := "SELECT some_other_pk FROM my_models WHERE my_models.id = $1 LIMIT $2"
+		sql := "SELECT my_models.some_other_pk FROM my_models WHERE my_models.id = $1 LIMIT $2"
 		mock.ExpectQuery(fmt.Sprintf("^%s$", regexp.QuoteMeta(sql))).WithArgs(id, 1)
 
 		result, err := repo.Exists(filter)
