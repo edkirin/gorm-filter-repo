@@ -20,6 +20,7 @@ func (m *ExistsMethod[T]) Init(repo *RepoBase[T]) {
 func (m ExistsMethod[T]) Exists(filter interface{}) (bool, error) {
 	var (
 		model T
+		res   int
 	)
 
 	query := m.repo.dbConn.Model(model)
@@ -29,8 +30,7 @@ func (m ExistsMethod[T]) Exists(filter interface{}) (bool, error) {
 		return false, err
 	}
 
-	fullIdField := model.TableName() + "." + m.repo.IdField
-	result := query.Select(fullIdField).Take(&model)
+	result := query.Select("1").Take(&res)
 
 	exists := !errors.Is(result.Error, gorm.ErrRecordNotFound) && result.Error == nil
 	return exists, nil
