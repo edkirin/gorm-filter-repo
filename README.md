@@ -2,4 +2,4 @@
 
 Simple repository pattern library to use with [GORM](https://gorm.io/index.html) with flexible and extensible smart filters.
 
-*NOTE*: This library is still under heavy development.
+**Note**: This library is still under heavy development.
