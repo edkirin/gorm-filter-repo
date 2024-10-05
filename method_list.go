@@ -7,8 +7,8 @@ import (
 )
 
 type ListOptions struct {
-	Only       *[]string
-	Ordering   *[]Order
+	Only       []string
+	Ordering   []Order
 	Pagination *Pagination
 	Joins      []string
 }

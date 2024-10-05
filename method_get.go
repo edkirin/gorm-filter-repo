@@ -7,8 +7,8 @@ import (
 )
 
 type GetOptions struct {
-	Only       *[]string
-	RaiseError *bool
+	Only       []string
+	RaiseError bool
 	Joins      []string
 }
 
@@ -40,7 +40,7 @@ func (m GetMethod[T]) Get(filter interface{}, options *GetOptions) (*T, error) {
 		return &model, nil
 	}
 
-	if options != nil && options.RaiseError != nil && *options.RaiseError {
+	if options != nil && options.RaiseError {
 		return nil, result.Error
 	}
 	return nil, nil

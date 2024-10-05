@@ -59,7 +59,7 @@ func TestListMethod(t *testing.T) {
 
 		filter := MyModelFilter{}
 		options := ListOptions{
-			Ordering: &[]Order{
+			Ordering: []Order{
 				{
 					Field:     "id",
 					Direction: OrderASC,
@@ -256,7 +256,7 @@ func TestListMethod(t *testing.T) {
 
 		filter := MyModelFilter{}
 		options := ListOptions{
-			Only: &[]string{
+			Only: []string{
 				"id",
 				"cnt",
 			},
