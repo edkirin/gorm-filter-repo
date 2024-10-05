@@ -23,6 +23,16 @@ type Order struct {
 	Direction OrderDirection
 }
 
+func applyJoins(query *gorm.DB, joins []string) *gorm.DB {
+	if len(joins) == 0 {
+		return query
+	}
+	for _, join := range joins {
+		query = query.Joins(join)
+	}
+	return query
+}
+
 func applyOptionOnly(query *gorm.DB, only *[]string) *gorm.DB {
 	if only == nil || len(*only) == 0 {
 		return query
@@ -38,9 +48,9 @@ func applyOptionOrdering(query *gorm.DB, ordering *[]Order) *gorm.DB {
 
 	for _, order := range *ordering {
 		if len(order.Direction) == 0 || order.Direction == OrderASC {
-			query = query.Order(order.Field)
+			query = query.Order(fmt.Sprintf(`"%s"`, order.Field))
 		} else {
-			query = query.Order(fmt.Sprintf("%s %s", order.Field, order.Direction))
+			query = query.Order(fmt.Sprintf(`"%s" %s`, order.Field, order.Direction))
 		}
 	}
 	return query

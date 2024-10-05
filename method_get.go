@@ -9,6 +9,7 @@ import (
 type GetOptions struct {
 	Only       *[]string
 	RaiseError *bool
+	Joins      []string
 }
 
 type GetMethod[T schema.Tabler] struct {
@@ -30,6 +31,7 @@ func (m GetMethod[T]) Get(filter interface{}, options *GetOptions) (*T, error) {
 	}
 
 	if options != nil {
+		query = applyJoins(query, options.Joins)
 		query = applyOptionOnly(query, options.Only)
 	}
 

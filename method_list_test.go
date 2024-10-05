@@ -71,7 +71,7 @@ func TestListMethod(t *testing.T) {
 			},
 		}
 
-		sql := "SELECT * FROM my_models ORDER BY id,cnt DESC"
+		sql := `SELECT * FROM my_models ORDER BY "id","cnt" DESC`
 		mock.ExpectQuery(fmt.Sprintf("^%s$", regexp.QuoteMeta(sql)))
 
 		_, err := repo.List(filter, &options)
