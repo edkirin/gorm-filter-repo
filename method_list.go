@@ -33,10 +33,10 @@ func (m ListMethod[T]) List(filter interface{}, options *ListOptions) (*[]T, err
 	}
 
 	if options != nil {
-		query = applyJoins(query, options.Joins)
-		query = applyOptionOnly(query, options.Only)
-		query = applyOptionOrdering(query, options.Ordering)
-		query = applyOptionPagination(query, options.Pagination)
+		query = ApplyJoins(query, options.Joins)
+		query = ApplyOptionOnly(query, options.Only)
+		query = ApplyOptionOrdering(query, options.Ordering)
+		query = ApplyOptionPagination(query, options.Pagination)
 	}
 
 	query.Find(&models)

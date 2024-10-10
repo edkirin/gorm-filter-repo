@@ -31,8 +31,8 @@ func (m GetMethod[T]) Get(filter interface{}, options *GetOptions) (*T, error) {
 	}
 
 	if options != nil {
-		query = applyJoins(query, options.Joins)
-		query = applyOptionOnly(query, options.Only)
+		query = ApplyJoins(query, options.Joins)
+		query = ApplyOptionOnly(query, options.Only)
 	}
 
 	result := query.First(&model)

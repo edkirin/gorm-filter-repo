@@ -23,7 +23,7 @@ type Order struct {
 	Direction OrderDirection
 }
 
-func applyJoins(query *gorm.DB, joins []string) *gorm.DB {
+func ApplyJoins(query *gorm.DB, joins []string) *gorm.DB {
 	if len(joins) == 0 {
 		return query
 	}
@@ -33,7 +33,7 @@ func applyJoins(query *gorm.DB, joins []string) *gorm.DB {
 	return query
 }
 
-func applyOptionOnly(query *gorm.DB, only []string) *gorm.DB {
+func ApplyOptionOnly(query *gorm.DB, only []string) *gorm.DB {
 	if len(only) == 0 {
 		return query
 	}
@@ -41,7 +41,7 @@ func applyOptionOnly(query *gorm.DB, only []string) *gorm.DB {
 	return query
 }
 
-func applyOptionOrdering(query *gorm.DB, ordering []Order) *gorm.DB {
+func ApplyOptionOrdering(query *gorm.DB, ordering []Order) *gorm.DB {
 	if len(ordering) == 0 {
 		return query
 	}
@@ -56,7 +56,7 @@ func applyOptionOrdering(query *gorm.DB, ordering []Order) *gorm.DB {
 	return query
 }
 
-func applyOptionPagination(query *gorm.DB, pagination *Pagination) *gorm.DB {
+func ApplyOptionPagination(query *gorm.DB, pagination *Pagination) *gorm.DB {
 	if pagination == nil {
 		return query
 	}
