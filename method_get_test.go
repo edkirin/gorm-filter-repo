@@ -43,12 +43,11 @@ func TestGetMethod(t *testing.T) {
 		repo.Init(db, nil)
 
 		id := uuid.New()
-		raiseError := true
 		filter := MyModelFilter{
 			Id: &id,
 		}
 		options := GetOptions{
-			RaiseError: &raiseError,
+			RaiseError: true,
 		}
 
 		sql := "SELECT * FROM my_models WHERE my_models.id = $1 ORDER BY my_models.id LIMIT $2"

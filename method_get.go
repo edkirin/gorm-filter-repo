@@ -7,8 +7,10 @@ import (
 )
 
 type GetOptions struct {
-	Only       *[]string
-	RaiseError *bool
+	Only       []string
+	Ordering   []Order
+	RaiseError bool
+	Joins      []string
 }
 
 type GetMethod[T schema.Tabler] struct {
@@ -30,7 +32,9 @@ func (m GetMethod[T]) Get(filter interface{}, options *GetOptions) (*T, error) {
 	}
 
 	if options != nil {
-		query = applyOptionOnly(query, options.Only)
+		query = ApplyJoins(query, options.Joins)
+		query = ApplyOptionOnly(query, options.Only)
+		query = ApplyOptionOrdering(query, options.Ordering)
 	}
 
 	result := query.First(&model)
@@ -38,7 +42,7 @@ func (m GetMethod[T]) Get(filter interface{}, options *GetOptions) (*T, error) {
 		return &model, nil
 	}
 
-	if options != nil && options.RaiseError != nil && *options.RaiseError {
+	if options != nil && options.RaiseError {
 		return nil, result.Error
 	}
 	return nil, nil
