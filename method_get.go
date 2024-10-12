@@ -8,6 +8,7 @@ import (
 
 type GetOptions struct {
 	Only       []string
+	Ordering   []Order
 	RaiseError bool
 	Joins      []string
 }
@@ -33,6 +34,7 @@ func (m GetMethod[T]) Get(filter interface{}, options *GetOptions) (*T, error) {
 	if options != nil {
 		query = ApplyJoins(query, options.Joins)
 		query = ApplyOptionOnly(query, options.Only)
+		query = ApplyOptionOrdering(query, options.Ordering)
 	}
 
 	result := query.First(&model)
